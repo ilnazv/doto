@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 const App: React.FC = () => {
     const Dashboard = React.lazy(() => import('./Pages/Dashboard/Dashboard'));
     return (
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
             <Suspense fallback={<div>Loading...</div>}>
                 <Switch>
                     <Route exact path="/" component={Dashboard} />
