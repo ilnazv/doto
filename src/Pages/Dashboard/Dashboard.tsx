@@ -1,5 +1,6 @@
 import React from "react";
 import { heroesService } from "./HeroService";
+import css from './Dashboard.module.scss';
 
 const baseApiUrl = "https://api.opendota.com";
 
@@ -28,7 +29,7 @@ export default class Dashboard extends React.Component<{}, DashboardProps> {
 
     public render(): JSX.Element {
         return (
-            <div className="dashboard">
+            <div className={css.dashboard}>
                 {this.state.heroes.map(x => <Hero hero={x}></Hero>)}
             </div>
         );
