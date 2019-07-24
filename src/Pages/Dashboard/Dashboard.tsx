@@ -1,12 +1,15 @@
 import React from "react";
 import { heroesService } from "./HeroService";
 import css from './Dashboard.module.scss';
+import { Card, Grid, Avatar, CardHeader, CardMedia } from '@material-ui/core';
 
 const baseApiUrl = "https://api.opendota.com";
 
 export interface IHero {
     name: string;
     imageUrl: string;
+    iconUrl: string;
+    attack_type: string;
 }
 
 interface DashboardProps {
@@ -30,15 +33,37 @@ export default class Dashboard extends React.Component<{}, DashboardProps> {
     public render(): JSX.Element {
         return (
             <div className={css.dashboard}>
-                {this.state.heroes.map(x => <Hero hero={x}></Hero>)}
+                <Grid
+                    container
+                    direction="row"
+                    justify="flex-start"
+                    alignItems="flex-start"
+                    spacing={2}
+                >
+                    {this.state.heroes.map(x =>
+                        <Grid key={x.name} item><Hero hero={x}></Hero></Grid>
+                    )}
+                </Grid>
             </div>
         );
     }
 }
 
 function Hero(props: { hero: IHero }) {
-    return <div className={css.hero}>
-        <span>{props.hero.name}</span>
-        <img src={baseApiUrl + props.hero.imageUrl} alt={props.hero.name} />
-    </div>;
+    const imageFullUrl = baseApiUrl + props.hero.imageUrl;
+    const iconFullUrl = baseApiUrl + props.hero.iconUrl;
+    return <Card className={css.hero}>
+        <CardHeader
+            avatar={
+                <Avatar src={iconFullUrl}>
+                </Avatar>
+            }
+            title={props.hero.name}
+            subheader={props.hero.attack_type}
+        />
+        <CardMedia
+            className={css.cardMedia}
+            image={imageFullUrl}
+        />
+    </Card>;
 }

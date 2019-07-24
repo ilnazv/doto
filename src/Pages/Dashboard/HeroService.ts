@@ -7,7 +7,9 @@ export const heroesService = {
         const heroes = await response.json();
         return heroes.map((x: any) => <IHero>{
             name: x.localized_name,
-            imageUrl: x.icon
+            imageUrl: x.img,
+            iconUrl: x.icon,
+            attack_type: x.attack_type
         });
     }
 }
