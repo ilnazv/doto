@@ -37,7 +37,7 @@ export default class Dashboard extends React.Component<{}, DashboardProps> {
 }
 
 function Hero(props: { hero: IHero }) {
-    return <div>
+    return <div className={css.hero}>
         <span>{props.hero.name}</span>
         <img src={baseApiUrl + props.hero.imageUrl} alt={props.hero.name} />
     </div>;
