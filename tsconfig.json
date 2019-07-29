@@ -20,7 +20,8 @@
         "noEmit": true,
         "jsx": "preserve",
         "typeRoots": [
-            "@material-ui/core"
+            "@material-ui/core",
+            "@material-ui/icons"
         ]
     },
     "include": [
