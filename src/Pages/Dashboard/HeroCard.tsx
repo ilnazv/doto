@@ -12,7 +12,6 @@ import {
 import { IHero } from "./Dashboard";
 import { withRouter } from "react-router-dom";
 
-const baseApiUrl = "https://api.opendota.com";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     hero: {
@@ -35,16 +34,19 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export function Hero(props: { hero: IHero; minimized: boolean }): JSX.Element {
-  const imageFullUrl = baseApiUrl + props.hero.imageUrl;
-  const iconFullUrl = baseApiUrl + props.hero.iconUrl;
+export function HeroCard(props: {
+  hero: IHero;
+  minimized: boolean;
+}): JSX.Element {
   const classes = useStyles();
 
   return (
     <HeroLink id={props.hero.name}>
       <Card className={classes.hero} raised={true} square={true}>
         <CardHeader
-          avatar={props.minimized ? <Avatar src={iconFullUrl} /> : undefined}
+          avatar={
+            props.minimized ? <Avatar src={props.hero.iconUrl} /> : undefined
+          }
           title={props.hero.name}
           titleTypographyProps={{
             className: classes.cardTitle
@@ -55,7 +57,10 @@ export function Hero(props: { hero: IHero; minimized: boolean }): JSX.Element {
           }}
         />
         {!props.minimized && (
-          <CardMedia className={classes.cardMedia} image={imageFullUrl} />
+          <CardMedia
+            className={classes.cardMedia}
+            image={props.hero.imageUrl}
+          />
         )}
       </Card>
     </HeroLink>
@@ -63,8 +68,7 @@ export function Hero(props: { hero: IHero; minimized: boolean }): JSX.Element {
 }
 
 const HeroLink = withRouter((props: any) => (
-    <ButtonBase onClick={() => props.history.push(`/hero/${props.id}`)}>
-        {props.children}
-    </ButtonBase>
-))
-
+  <ButtonBase onClick={() => props.history.push(`/hero/${props.id}`)}>
+    {props.children}
+  </ButtonBase>
+));

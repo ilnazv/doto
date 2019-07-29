@@ -78,7 +78,6 @@ export const Layout = (props: React.PropsWithChildren<{ setMinimized: () => void
             <Icon>photo_size_select_large</Icon>
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
           </Typography>
         </Toolbar>
       </AppBar>

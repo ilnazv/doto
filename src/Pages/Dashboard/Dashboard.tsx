@@ -1,8 +1,7 @@
 import React from "react";
-import { heroesService } from "./HeroService";
 import { Grid, withStyles } from "@material-ui/core";
 import { CSSProperties } from "@material-ui/styles";
-import { Hero } from "./HeroCard";
+import { HeroCard } from "./HeroCard";
 
 export interface IHero {
   name: string;
@@ -11,13 +10,10 @@ export interface IHero {
   attack_type: string;
 }
 
-interface DashboardState {
-  heroes: IHero[];
-}
-
 interface DashboardProps {
   classes: any;
   minimized: boolean;
+  heroes: IHero[];
 }
 
 const gradColor0 = "#495591";
@@ -39,23 +35,12 @@ const styles = () => ({
   } as CSSProperties
 });
 
-export class Dashboard extends React.Component<DashboardProps, DashboardState> {
+export class Dashboard extends React.Component<DashboardProps, {}> {
   private classes: any;
 
   constructor(props: DashboardProps) {
     super(props);
-    this.state = {
-      heroes: []
-    };
     this.classes = props.classes;
-  }
-
-  componentDidMount() {
-    heroesService.loadHeroStats().then(heroes =>
-      this.setState({
-        heroes
-      })
-    );
   }
 
   public render(): JSX.Element {
@@ -70,9 +55,9 @@ export class Dashboard extends React.Component<DashboardProps, DashboardState> {
             alignItems="flex-start"
             spacing={2}
           >
-            {this.state.heroes.map(x => (
+            {this.props.heroes.map(x => (
               <Grid key={x.name} item>
-                <Hero hero={x} minimized={this.props.minimized} />
+                <HeroCard hero={x} minimized={this.props.minimized} />
               </Grid>
             ))}
           </Grid>
