@@ -1,9 +1,8 @@
 import React from "react";
 import { heroesService } from "./HeroService";
-import css from "./Dashboard.module.scss";
-import { Card, Grid, Avatar, CardHeader, CardMedia } from "@material-ui/core";
-
-const baseApiUrl = "https://api.opendota.com";
+import { Grid, withStyles } from "@material-ui/core";
+import { CSSProperties } from "@material-ui/styles";
+import { Hero } from "./HeroCard";
 
 export interface IHero {
   name: string;
@@ -12,16 +11,43 @@ export interface IHero {
   attack_type: string;
 }
 
-interface DashboardProps {
+interface DashboardState {
   heroes: IHero[];
 }
 
-export default class Dashboard extends React.Component<{}, DashboardProps> {
-  constructor(props: Readonly<{}>) {
+interface DashboardProps {
+  classes: any;
+  minimized: boolean;
+}
+
+const gradColor0 = "#495591";
+const gradColor1 = "#1e254c";
+
+const styles = () => ({
+  dashboard: {
+    padding: 20,
+    position: "relative"
+  } as CSSProperties,
+
+  dashboardBackground: {
+    background: `radial-gradient(ellipse at 0% 0%, ${gradColor0} 0%, ${gradColor1} 100%)`,
+    position: "fixed",
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0
+  } as CSSProperties
+});
+
+export class Dashboard extends React.Component<DashboardProps, DashboardState> {
+  private classes: any;
+
+  constructor(props: DashboardProps) {
     super(props);
     this.state = {
       heroes: []
     };
+    this.classes = props.classes;
   }
 
   componentDidMount() {
@@ -35,8 +61,8 @@ export default class Dashboard extends React.Component<{}, DashboardProps> {
   public render(): JSX.Element {
     return (
       <>
-        <div className={css.dashboard__background} />
-        <div className={css.dashboard}>
+        <div className={this.classes.dashboardBackground} />
+        <div className={this.classes.dashboard}>
           <Grid
             container
             direction="row"
@@ -46,7 +72,7 @@ export default class Dashboard extends React.Component<{}, DashboardProps> {
           >
             {this.state.heroes.map(x => (
               <Grid key={x.name} item>
-                <Hero hero={x} />
+                <Hero hero={x} minimized={this.props.minimized} />
               </Grid>
             ))}
           </Grid>
@@ -56,17 +82,4 @@ export default class Dashboard extends React.Component<{}, DashboardProps> {
   }
 }
 
-function Hero(props: { hero: IHero }) {
-  const imageFullUrl = baseApiUrl + props.hero.imageUrl;
-  const iconFullUrl = baseApiUrl + props.hero.iconUrl;
-  return (
-    <Card className={css.hero}>
-      <CardHeader
-        avatar={<Avatar src={iconFullUrl} />}
-        title={props.hero.name}
-        subheader={props.hero.attack_type}
-      />
-      <CardMedia className={css.cardMedia} image={imageFullUrl} />
-    </Card>
-  );
-}
+export default withStyles(styles)(Dashboard);

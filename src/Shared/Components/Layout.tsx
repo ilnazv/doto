@@ -12,7 +12,8 @@ import {
   Divider,
   makeStyles,
   Theme,
-  createStyles
+  createStyles,
+  Icon
 } from "@material-ui/core";
 import { Menu, Inbox, Mail } from "@material-ui/icons";
 import clsx from "clsx";
@@ -51,9 +52,10 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const Layout = (props: React.PropsWithChildren<{}>) => {
+export const Layout = (props: React.PropsWithChildren<{ setMinimized: () => void }>) => {
   const [openDrawer, setOpenDrawer] = React.useState(false);
   const classes = useStyles();
+  const { setMinimized } = props;
 
   return (
     <>
@@ -66,6 +68,14 @@ export const Layout = (props: React.PropsWithChildren<{}>) => {
             onClick={() => setOpenDrawer(!openDrawer)}
           >
             <Menu />
+          </IconButton>
+          <IconButton
+            color="inherit"
+            aria-label="minimize toggle"
+            edge="start"
+            onClick={setMinimized}
+          >
+            <Icon>photo_size_select_large</Icon>
           </IconButton>
           <Typography variant="h6" noWrap>
             Persistent drawer
