@@ -5,6 +5,7 @@ import { Layout } from "./Shared/Components/Layout";
 
 const App: React.FC = () => {
   const Dashboard = React.lazy(() => import("./Pages/Dashboard/Dashboard"));
+  const HeroStats = React.lazy(() => import("./Pages/HeroStats/HeroStats"));
   const [minimized, setMinimized] = React.useState(false);
 
   return (
@@ -16,6 +17,11 @@ const App: React.FC = () => {
               exact
               path="/"
               render={() => <Dashboard minimized={minimized} />}
+            />
+            <Route
+              exact
+              path="/hero/:id"
+              render={(props) => <HeroStats {...props} />}
             />
           </Switch>
         </Suspense>

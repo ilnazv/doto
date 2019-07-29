@@ -7,10 +7,10 @@ import {
   CardHeader,
   Avatar,
   CardMedia,
-  Typography,
   ButtonBase
 } from "@material-ui/core";
 import { IHero } from "./Dashboard";
+import { withRouter } from "react-router-dom";
 
 const baseApiUrl = "https://api.opendota.com";
 const useStyles = makeStyles((theme: Theme) =>
@@ -41,12 +41,10 @@ export function Hero(props: { hero: IHero; minimized: boolean }): JSX.Element {
   const classes = useStyles();
 
   return (
-    <ButtonBase>
+    <HeroLink id={props.hero.name}>
       <Card className={classes.hero} raised={true} square={true}>
         <CardHeader
-          avatar={
-            props.minimized ? <Avatar src={iconFullUrl} /> : undefined
-          }
+          avatar={props.minimized ? <Avatar src={iconFullUrl} /> : undefined}
           title={props.hero.name}
           titleTypographyProps={{
             className: classes.cardTitle
@@ -56,8 +54,17 @@ export function Hero(props: { hero: IHero; minimized: boolean }): JSX.Element {
             className: classes.cardSubheader
           }}
         />
-        {!props.minimized && <CardMedia className={classes.cardMedia} image={imageFullUrl} />}
+        {!props.minimized && (
+          <CardMedia className={classes.cardMedia} image={imageFullUrl} />
+        )}
       </Card>
-    </ButtonBase>
+    </HeroLink>
   );
 }
+
+const HeroLink = withRouter((props: any) => (
+    <ButtonBase onClick={() => props.history.push(`/hero/${props.id}`)}>
+        {props.children}
+    </ButtonBase>
+))
+
