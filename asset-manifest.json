@@ -1,21 +1,19 @@
 {
   "files": {
-    "main.css": "/doto/static/css/main.e9e80489.chunk.css",
-    "main.js": "/doto/static/js/main.9b727a0e.chunk.js",
-    "main.js.map": "/doto/static/js/main.9b727a0e.chunk.js.map",
-    "runtime~main.js": "/doto/static/js/runtime~main.e607fa2d.js",
-    "runtime~main.js.map": "/doto/static/js/runtime~main.e607fa2d.js.map",
-    "static/js/2.2bcc4d15.chunk.js": "/doto/static/js/2.2bcc4d15.chunk.js",
-    "static/js/2.2bcc4d15.chunk.js.map": "/doto/static/js/2.2bcc4d15.chunk.js.map",
-    "static/js/3.ab7f74a0.chunk.js": "/doto/static/js/3.ab7f74a0.chunk.js",
-    "static/js/3.ab7f74a0.chunk.js.map": "/doto/static/js/3.ab7f74a0.chunk.js.map",
-    "static/css/4.26ad781b.chunk.css": "/doto/static/css/4.26ad781b.chunk.css",
-    "static/js/4.1c8a8f1a.chunk.js": "/doto/static/js/4.1c8a8f1a.chunk.js",
-    "static/js/4.1c8a8f1a.chunk.js.map": "/doto/static/js/4.1c8a8f1a.chunk.js.map",
+    "main.css": "/doto/static/css/main.f5ff46da.chunk.css",
+    "main.js": "/doto/static/js/main.d92372ed.chunk.js",
+    "main.js.map": "/doto/static/js/main.d92372ed.chunk.js.map",
+    "runtime~main.js": "/doto/static/js/runtime~main.fb3a54ab.js",
+    "runtime~main.js.map": "/doto/static/js/runtime~main.fb3a54ab.js.map",
+    "static/js/2.a481ae14.chunk.js": "/doto/static/js/2.a481ae14.chunk.js",
+    "static/js/2.a481ae14.chunk.js.map": "/doto/static/js/2.a481ae14.chunk.js.map",
+    "static/js/3.2ed46ccc.chunk.js": "/doto/static/js/3.2ed46ccc.chunk.js",
+    "static/js/3.2ed46ccc.chunk.js.map": "/doto/static/js/3.2ed46ccc.chunk.js.map",
+    "static/js/4.2e730f96.chunk.js": "/doto/static/js/4.2e730f96.chunk.js",
+    "static/js/4.2e730f96.chunk.js.map": "/doto/static/js/4.2e730f96.chunk.js.map",
     "index.html": "/doto/index.html",
-    "precache-manifest.a9c17c9d1df5aad22b90a2bb44519c72.js": "/doto/precache-manifest.a9c17c9d1df5aad22b90a2bb44519c72.js",
+    "precache-manifest.02c2fb0c6e36d97f2a6ae0f2c09567c4.js": "/doto/precache-manifest.02c2fb0c6e36d97f2a6ae0f2c09567c4.js",
     "service-worker.js": "/doto/service-worker.js",
-    "static/css/4.26ad781b.chunk.css.map": "/doto/static/css/4.26ad781b.chunk.css.map",
-    "static/css/main.e9e80489.chunk.css.map": "/doto/static/css/main.e9e80489.chunk.css.map"
+    "static/css/main.f5ff46da.chunk.css.map": "/doto/static/css/main.f5ff46da.chunk.css.map"
   }
 }
