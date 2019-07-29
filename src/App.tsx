@@ -60,6 +60,7 @@ class App extends React.Component<{}, AppState> {
                   <Dashboard
                     minimized={this.state.minimized}
                     heroes={this.state.heroes}
+                    key="dashboard"
                   />
                 )}
               />
@@ -70,6 +71,7 @@ class App extends React.Component<{}, AppState> {
                   <HeroStats
                     hero={this.getHeroByName(props.match.params.id)}
                     {...props}
+                    key="herostats"
                   />
                 )}
               />
