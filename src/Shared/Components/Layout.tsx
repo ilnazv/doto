@@ -20,9 +20,17 @@ import clsx from "clsx";
 
 const drawerWidth = 240;
 const topBarHeight = 64;
+const gradColor0 = "#495591";
+const gradColor1 = "#1e254c";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    main: {
+      background: `radial-gradient(ellipse at 0% 0%, ${gradColor0} 0%, ${gradColor1} 100%)`,
+      backgroundAttachment: "fixed",
+      backgroundSize: "100vw 100vh"
+    },
+
     drawer: {
       width: drawerWidth,
       flexShrink: 0
@@ -52,7 +60,9 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export const Layout = (props: React.PropsWithChildren<{ setMinimized: () => void }>) => {
+export const Layout = (
+  props: React.PropsWithChildren<{ setMinimized: () => void }>
+) => {
   const [openDrawer, setOpenDrawer] = React.useState(false);
   const classes = useStyles();
   const { setMinimized } = props;
@@ -77,11 +87,10 @@ export const Layout = (props: React.PropsWithChildren<{ setMinimized: () => void
           >
             <Icon>photo_size_select_large</Icon>
           </IconButton>
-          <Typography variant="h6" noWrap>
-          </Typography>
+          <Typography variant="h6" noWrap />
         </Toolbar>
       </AppBar>
-      <main>
+      <main className={classes.main}>
         <div className={classes.contentHeader} />
         <Drawer
           className={classes.drawer}

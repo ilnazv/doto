@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-import "./App.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Layout } from "./Shared/Components/Layout";
 import { heroesService } from "./Pages/Dashboard/HeroService";
@@ -8,6 +7,7 @@ import { IHero } from "./Pages/Dashboard/Dashboard";
 interface AppState {
   minimized: boolean;
   heroes: IHero[];
+  loading: boolean;
 }
 
 const Dashboard = React.lazy(() => import("./Pages/Dashboard/Dashboard"));
@@ -19,15 +19,17 @@ class App extends React.Component<{}, AppState> {
 
     this.state = {
       minimized: false,
-      heroes: []
+      heroes: [],
+      loading: true
     };
   }
 
   componentDidMount() {
     heroesService.loadHeroStats().then(heroes =>
-      this.setState({
-        heroes
-      })
+        setTimeout(() => this.setState({
+            heroes,
+            loading: false
+          }), 3)
     );
   }
 
@@ -49,6 +51,8 @@ class App extends React.Component<{}, AppState> {
   };
 
   public render() {
+    const { minimized, heroes, loading } = this.state;
+
     return (
       <Layout setMinimized={this.handleToggle}>
         <Router basename={process.env.PUBLIC_URL}>
@@ -59,9 +63,10 @@ class App extends React.Component<{}, AppState> {
                 path="/"
                 render={() => (
                   <Dashboard
-                    minimized={this.state.minimized}
-                    heroes={this.state.heroes}
+                    minimized={minimized}
+                    heroes={heroes}
                     key="dashboard"
+                    loading={loading}
                   />
                 )}
               />
