@@ -17,9 +17,6 @@ interface DashboardProps {
   loading: boolean;
 }
 
-const gradColor0 = "#495591";
-const gradColor1 = "#1e254c";
-
 const styles = () => ({
   dashboard: {
     padding: 20,
