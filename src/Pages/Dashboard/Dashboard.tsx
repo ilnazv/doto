@@ -24,15 +24,6 @@ const styles = () => ({
   dashboard: {
     padding: 20,
     position: "relative"
-  } as CSSProperties,
-
-  dashboardBackground: {
-    background: `radial-gradient(ellipse at 0% 0%, ${gradColor0} 0%, ${gradColor1} 100%)`,
-    position: "fixed",
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0
   } as CSSProperties
 });
 
@@ -47,7 +38,6 @@ export class Dashboard extends React.Component<DashboardProps, {}> {
   public render(): JSX.Element {
     return (
       <>
-        <div className={this.classes.dashboardBackground} />
         <div className={this.classes.dashboard}>
           <Grid
             container

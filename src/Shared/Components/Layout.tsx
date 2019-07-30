@@ -26,9 +26,15 @@ const gradColor1 = "#1e254c";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     main: {
-      background: `radial-gradient(ellipse at 0% 0%, ${gradColor0} 0%, ${gradColor1} 100%)`,
-      backgroundAttachment: "fixed",
-      backgroundSize: "100vw 100vh"
+    },
+
+    background: {
+      top: 0,
+      left: 0,
+      height: "calc(100% + 56px)", //56px - mobile browser address bar size
+      width: "100%",
+      position: "fixed",
+      background: `radial-gradient(ellipse at 0% 0%, ${gradColor0} 0%, ${gradColor1} 100%)`
     },
 
     drawer: {
@@ -91,6 +97,7 @@ export const Layout = (
         </Toolbar>
       </AppBar>
       <main className={classes.main}>
+        <div className={classes.background} />
         <div className={classes.contentHeader} />
         <Drawer
           className={classes.drawer}

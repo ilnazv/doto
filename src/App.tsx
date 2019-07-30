@@ -26,10 +26,10 @@ class App extends React.Component<{}, AppState> {
 
   componentDidMount() {
     heroesService.loadHeroStats().then(heroes =>
-        setTimeout(() => this.setState({
-            heroes,
-            loading: false
-          }), 3)
+      this.setState({
+        heroes,
+        loading: false
+      })
     );
   }
 
