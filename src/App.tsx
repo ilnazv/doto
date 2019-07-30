@@ -10,6 +10,9 @@ interface AppState {
   heroes: IHero[];
 }
 
+const Dashboard = React.lazy(() => import("./Pages/Dashboard/Dashboard"));
+const HeroStats = React.lazy(() => import("./Pages/HeroStats/HeroStats"));
+
 class App extends React.Component<{}, AppState> {
   constructor(props: Readonly<{}>) {
     super(props);
@@ -46,8 +49,6 @@ class App extends React.Component<{}, AppState> {
   };
 
   public render() {
-    const Dashboard = React.lazy(() => import("./Pages/Dashboard/Dashboard"));
-    const HeroStats = React.lazy(() => import("./Pages/HeroStats/HeroStats"));
     return (
       <Layout setMinimized={this.handleToggle}>
         <Router basename={process.env.PUBLIC_URL}>

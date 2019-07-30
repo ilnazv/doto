@@ -41,7 +41,7 @@ export function HeroCard(props: {
   const classes = useStyles();
 
   return (
-    <HeroLink id={props.hero.name}>
+    <HeroLink key={props.hero.name} id={props.hero.name}>
       <Card className={classes.hero} raised={true} square={true}>
         <CardHeader
           avatar={
