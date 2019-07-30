@@ -14,7 +14,6 @@ interface DashboardProps {
   classes: any;
   minimized: boolean;
   heroes: IHero[];
-  loading: boolean;
 }
 
 const styles = () => ({
@@ -43,9 +42,6 @@ export class Dashboard extends React.Component<DashboardProps, {}> {
             alignItems="flex-start"
             spacing={2}
           >
-            {this.props.loading && (
-              <span className={this.classes.loading}>Loading...</span>
-            )}
             {this.props.heroes.map(x => (
               <Grid key={x.name} item>
                 <HeroCard hero={x} minimized={this.props.minimized} />

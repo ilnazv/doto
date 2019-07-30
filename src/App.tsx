@@ -54,8 +54,8 @@ class App extends React.Component<{}, AppState> {
     const { minimized, heroes, loading } = this.state;
 
     return (
-      <Layout setMinimized={this.handleToggle}>
-        <Router basename={process.env.PUBLIC_URL}>
+      <Router basename={process.env.PUBLIC_URL}>
+        <Layout setMinimized={this.handleToggle} loading={loading}>
           <Suspense fallback={<div>Loading...</div>}>
             <Switch>
               <Route
@@ -66,7 +66,6 @@ class App extends React.Component<{}, AppState> {
                     minimized={minimized}
                     heroes={heroes}
                     key="dashboard"
-                    loading={loading}
                   />
                 )}
               />
@@ -83,8 +82,8 @@ class App extends React.Component<{}, AppState> {
               />
             </Switch>
           </Suspense>
-        </Router>
-      </Layout>
+        </Layout>
+      </Router>
     );
   }
 }

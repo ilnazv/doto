@@ -41,7 +41,7 @@ export function HeroCard(props: {
   const classes = useStyles();
 
   return (
-    <HeroLink key={props.hero.name} id={props.hero.name}>
+    <HeroLink key={props.hero.name} path={`/hero/${props.hero.name}`}>
       <Card className={classes.hero} raised={true} square={true}>
         <CardHeader
           avatar={
@@ -67,8 +67,8 @@ export function HeroCard(props: {
   );
 }
 
-const HeroLink = withRouter((props: any) => (
-  <ButtonBase onClick={() => props.history.push(`/hero/${props.id}`)}>
+export const HeroLink = withRouter((props: any) => (
+  <ButtonBase onClick={() => props.history.push(props.path)}>
     {props.children}
   </ButtonBase>
 ));

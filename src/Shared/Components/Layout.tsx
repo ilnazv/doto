@@ -3,7 +3,6 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Typography,
   Drawer,
   List,
   ListItem,
@@ -13,20 +12,21 @@ import {
   makeStyles,
   Theme,
   createStyles,
-  Icon
+  Icon,
+  LinearProgress,
+  Grid
 } from "@material-ui/core";
-import { Menu, Inbox, Mail } from "@material-ui/icons";
+import { Inbox, Mail } from "@material-ui/icons";
 import clsx from "clsx";
+import { HeroLink } from "../../Pages/Dashboard/HeroCard";
 
 const drawerWidth = 240;
-const topBarHeight = 64;
 const gradColor0 = "#495591";
 const gradColor1 = "#1e254c";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    main: {
-    },
+    main: {},
 
     background: {
       top: 0,
@@ -34,7 +34,8 @@ const useStyles = makeStyles((theme: Theme) =>
       height: "calc(100% + 56px)", //56px - mobile browser address bar size
       width: "100%",
       position: "fixed",
-      background: `radial-gradient(ellipse at 0% 0%, ${gradColor0} 0%, ${gradColor1} 100%)`
+      background: `radial-gradient(ellipse at 0% 0%, ${gradColor0} 0%, ${gradColor1} 100%)`,
+      zIndex: -1
     },
 
     drawer: {
@@ -43,10 +44,13 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drawerPaper: {
       width: drawerWidth,
-      top: topBarHeight
+      top: theme.mixins.toolbar.minHeight,
+      [theme.breakpoints.up("sm")]: {
+        top: theme.spacing(8)
+      }
     },
     contentHeader: {
-      height: topBarHeight
+      ...theme.mixins.toolbar
     },
     content: {
       flexGrow: 1,
@@ -67,38 +71,44 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const Layout = (
-  props: React.PropsWithChildren<{ setMinimized: () => void }>
+  props: React.PropsWithChildren<{ setMinimized: () => void; loading: boolean }>
 ) => {
   const [openDrawer, setOpenDrawer] = React.useState(false);
   const classes = useStyles();
-  const { setMinimized } = props;
+  const { setMinimized, loading } = props;
 
   return (
     <>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={() => setOpenDrawer(!openDrawer)}
+          <Grid
+            container
+            direction="row"
+            justify="space-between"
+            alignItems="center"
           >
-            <Menu />
-          </IconButton>
-          <IconButton
-            color="inherit"
-            aria-label="minimize toggle"
-            edge="start"
-            onClick={setMinimized}
-          >
-            <Icon>photo_size_select_large</Icon>
-          </IconButton>
-          <Typography variant="h6" noWrap />
+            <Grid item>
+              <HeroLink path="/">
+                <Icon>dashboard</Icon>
+              </HeroLink>
+            </Grid>
+            <Grid item>
+              <IconButton
+                color="inherit"
+                aria-label="minimize toggle"
+                edge="end"
+                onClick={setMinimized}
+              >
+                <Icon>photo_size_select_large</Icon>
+              </IconButton>
+            </Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
       <main className={classes.main}>
         <div className={classes.background} />
         <div className={classes.contentHeader} />
+        {loading && <LinearProgress />}
         <Drawer
           className={classes.drawer}
           variant="persistent"
