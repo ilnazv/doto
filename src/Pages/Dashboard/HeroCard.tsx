@@ -42,33 +42,35 @@ export function HeroCard(props: {
 
   return (
     <HeroLink key={props.hero.name} path={`/hero/${props.hero.name}`}>
-      <Card className={classes.hero} raised={true} square={true}>
-        <CardHeader
-          avatar={
-            props.minimized ? <Avatar src={props.hero.iconUrl} /> : undefined
-          }
-          title={props.hero.name}
-          titleTypographyProps={{
-            className: classes.cardTitle
-          }}
-          subheader={props.hero.attack_type}
-          subheaderTypographyProps={{
-            className: classes.cardSubheader
-          }}
-        />
-        {!props.minimized && (
-          <CardMedia
-            className={classes.cardMedia}
-            image={props.hero.imageUrl}
+      <ButtonBase>
+        <Card className={classes.hero} raised={true} square={true}>
+          <CardHeader
+            avatar={
+              props.minimized ? <Avatar src={props.hero.iconUrl} /> : undefined
+            }
+            title={props.hero.name}
+            titleTypographyProps={{
+              className: classes.cardTitle
+            }}
+            subheader={props.hero.attack_type}
+            subheaderTypographyProps={{
+              className: classes.cardSubheader
+            }}
           />
-        )}
-      </Card>
+          {!props.minimized && (
+            <CardMedia
+              className={classes.cardMedia}
+              image={props.hero.imageUrl}
+            />
+          )}
+        </Card>
+      </ButtonBase>
     </HeroLink>
   );
 }
 
-export const HeroLink = withRouter((props: any) => (
-  <ButtonBase onClick={() => props.history.push(props.path)}>
-    {props.children}
-  </ButtonBase>
-));
+export const HeroLink = withRouter((props: any) =>
+  React.cloneElement(props.children, {
+    onClick: () => props.history.push(props.path)
+  })
+);
