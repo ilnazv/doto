@@ -71,6 +71,6 @@ export function HeroCard(props: {
 
 export const HeroLink = withRouter((props: any) =>
   React.cloneElement(props.children, {
-    onClick: () => props.history.push(props.path)
+    onClick: () => props.goBack && props.history ? props.history.goBack() : props.history.push(props.path)
   })
 );

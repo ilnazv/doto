@@ -34,7 +34,7 @@ export class HeroStats extends React.Component<HeroStatsProps, {}> {
         <img src={this.props.hero.imageUrl} alt={this.props.hero.name} />
         <span>Name: {this.props.hero.name}</span>
         <span>Attack: {this.props.hero.attack_type}</span>
-        <HeroLink path="/">
+        <HeroLink path="/" goBack>
           <Fab color="primary" aria-label="add" className={this.classes.fab}>
             <Icon>chevron_left</Icon>
           </Fab>
